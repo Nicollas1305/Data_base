@@ -1,0 +1,18 @@
+USE demonstracoes
+
+CREATE TABLE relatorio_cadastro_operadoras_ans(REG_ANS char(7) PRIMARY KEY, CNPJ char(14), Razao_social varchar(200), Nome_fantasia varchar(200), Modalidade varchar(200), Logradouro varchar(200), Numero varchar(200), Complemento varchar(200), Bairro varchar(200), Cidade varchar(200), CEP char (8), DDD char (2), Telefone varchar(8), FAX varchar(12), Endereco_eletronico varchar(200), Representante varchar(200), Cargo_representante varchar(200), Data_registro_ans DATE);
+
+CREATE TABLE demonstracoes_contabeis_1T2021(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_FINAL float(250, 2));
+
+CREATE TABLE demonstracoes_contabeis_2T2021(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_FINAL float(250, 2));
+
+CREATE TABLE demonstracoes_contabeis_3T2021(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_FINAL float(250, 2));
+
+CREATE TABLE demonstracoes_contabeis_4T2021(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_INICIAL float (250, 2), VL_SALDO_FINAL float(250, 2));
+
+CREATE TABLE demonstracoes_contabeis_1T2022(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_INICIAL float (250, 2), VL_SALDO_FINAL float(250, 2));
+
+CREATE TABLE demonstracoes_contabeis_2T2022(DATA datetime, REG_ANS int(6), FOREIGN KEY (REG_ANS) REFERENCES relatorio_cadastro_operadoras_ans(REG_ANS), COD_CONTA_CONTABIL int(10), DESCRICAO varchar(200), VL_SALDO_INICIAL float (250, 2), VL_SALDO_FINAL float(250, 2));
+
+SELECT TOP 10 * relatorio_cadastro_operadoras_ans.REG_ANS, relatorio_cadastro_operadoras_ans.Razao_social WHERE demonstracoes_contabeis_2T2022.DESCRICAO = 'EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS  DE ASSISTÃŠNCIA A SAÃšDE MEDICO HOSPITALAR '
+INNER JOIN demonstracoes_contabeis_2T2022 ON relatorio_cadastro_operadoras_ans.REG_ANS=relatorio_cadastro_operadoras_ans.REG_ANS;
